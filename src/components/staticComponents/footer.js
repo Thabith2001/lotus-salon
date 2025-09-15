@@ -16,8 +16,8 @@ import {
     Users,
     Calendar
 } from 'lucide-react';
-import {links, businessHours, socialLinks, services} from "@/data/staticData";
-import {useSparkles} from "@/helper/useAnimation";
+import {links, businessHours, socialLinks, services} from "@/data/data";
+import {useSparkles} from "@/hooks/useSparkles";
 
 const Footer = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -56,10 +56,10 @@ const Footer = () => {
 
     const handleNewsletterSubmit = (e) => {
         e.preventDefault();
-        // Handle newsletter subscription
+
         console.log('Newsletter subscription:', email);
         setEmail('');
-        // Add success feedback here
+
     };
 
 
