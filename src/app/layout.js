@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import Header from "@/components/staticComponents/header";
 import {Poppins} from "next/font/google";
+import Footer from "@/components/staticComponents/Footer";
 
 const poppins = Poppins({
     variable: "--font-poppins",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         <main className={`w-screen h-screen items-center justify-center overflow-x-hidden ${poppins.variable}`}>
             <Header/>
             {children}
+            <Footer/>
         </main>
         </body>
         </html>
