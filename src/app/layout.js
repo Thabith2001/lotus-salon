@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import Header from "@/components/staticComponents/header";
 import {Poppins} from "next/font/google";
-import Footer from "@/components/staticComponents/Footer";
+import Footer from "@/components/staticComponents/footer";
 
 const poppins = Poppins({
     variable: "--font-poppins",
