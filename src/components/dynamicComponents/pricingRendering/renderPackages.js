@@ -88,7 +88,7 @@ const renderPackages = () => {
 
                         <DynamicButton
                             data={pkg}
-                            hrefBase="/pricing/package"
+                            hrefBase="/billing/package"
                             label="Book Package"
                             icon={Calendar}
                         />

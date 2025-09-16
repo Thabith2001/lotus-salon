@@ -73,7 +73,7 @@ const renderIndividualServices = () => {
                         {/*book button*/}
                         <DynamicButton
                             data={service}
-                            hrefBase="/pricing/service"
+                            hrefBase="/billing/service"
                             label="Book Now"
                             icon={Calendar}
                         />

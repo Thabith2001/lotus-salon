@@ -99,7 +99,7 @@ const RenderMemberships = () => {
                         {/* Join Button */}
                         <DynamicButton
                             data={membership}
-                            hrefBase="/pricing/membership"
+                            hrefBase="/billing/membership"
                             label="Join Membership"
                             icon={Crown}
                         />

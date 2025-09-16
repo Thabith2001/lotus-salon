@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
         <body>
         <main className={`w-screen h-screen items-center justify-center overflow-x-hidden ${poppins.variable}`}>
             <Header/>
-            <DataProvider>{children}</DataProvider>
+            <DataProvider>
+                {children}
+            </DataProvider>
             <Footer/>
         </main>
         </body>

@@ -1,15 +1,15 @@
 import React from 'react';
+import Link from "next/link";
 
 
 const Button = ({label, theme, onClick}) => {
-    console.log(theme);
     return (
-            <button
-                className={theme}
-                onClick={onClick}
-            >
-                <span className="relative z-10">{label}</span>
-            </button>
+        <button
+            className={theme}
+            onClick={onClick}
+        >
+            <span className="relative z-10">{label}</span>
+        </button>
     );
 };
 export default Button;
