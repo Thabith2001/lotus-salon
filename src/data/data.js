@@ -244,6 +244,7 @@ export const pricing_categories = [
 export const individualServices = [
     {
         id: 1,
+        subscription: 'individual',
         category: 'manicure',
         name: 'Classic Manicure',
         description: 'Traditional nail care with cuticle treatment and polish',
@@ -255,6 +256,7 @@ export const individualServices = [
     },
     {
         id: 2,
+        subscription: 'individual',
         category: 'manicure',
         name: 'Gel Manicure',
         description: 'Long-lasting gel polish with UV curing',
@@ -266,6 +268,7 @@ export const individualServices = [
     },
     {
         id: 3,
+        subscription: 'individual',
         category: 'pedicure',
         name: 'Luxury Spa Pedicure',
         description: 'Complete foot care with exfoliation and massage',
@@ -277,6 +280,7 @@ export const individualServices = [
     },
     {
         id: 4,
+        subscription: 'individual',
         category: 'nail-art',
         name: 'Custom Nail Art',
         description: 'Hand-painted designs tailored to your style',
@@ -288,6 +292,7 @@ export const individualServices = [
     },
     {
         id: 5,
+        subscription: 'individual',
         category: 'extensions',
         name: 'Acrylic Extensions',
         description: 'Durable extensions for length and strength',
@@ -299,6 +304,7 @@ export const individualServices = [
     },
     {
         id: 6,
+        subscription: 'individual',
         category: 'extensions',
         name: 'Gel Extensions',
         description: 'Natural-looking lightweight extensions',
@@ -313,6 +319,7 @@ export const individualServices = [
 export const packages = [
     {
         id: 'basic',
+        subscription: 'package',
         name: 'Essential Beauty',
         description: 'Perfect introduction to luxury nail care',
         price: 120,
@@ -327,6 +334,7 @@ export const packages = [
     },
     {
         id: 'premium',
+        subscription: 'package',
         name: 'Luxury Spa Experience',
         description: 'Our most popular comprehensive package',
         price: 180,
@@ -341,6 +349,7 @@ export const packages = [
     },
     {
         id: 'ultimate',
+        subscription: 'package',
         name: 'Royal Treatment',
         description: 'The ultimate luxury nail experience',
         price: 280,
@@ -358,12 +367,13 @@ export const packages = [
 export const memberships = [
     {
         id: 'bronze',
+        subscription: 'membership',
         name: 'Bronze Membership',
         description: 'Ideal for regular nail care enthusiasts',
-        monthlyPrice: 89,
+        price: 89,
         originalPrice: 120,
         savings: 31,
-        services: '2 services per month',
+        services: ['2 services per month'],
         features: [
             '2 gel manicures monthly',
             '10% off additional services',
@@ -377,12 +387,13 @@ export const memberships = [
     },
     {
         id: 'silver',
+        subscription: 'membership',
         name: 'Silver Membership',
         description: 'Perfect balance of luxury and value',
-        monthlyPrice: 149,
+        price: 149,
         originalPrice: 200,
         savings: 51,
-        services: '3 services per month',
+        services: ['3 services per month'],
         features: [
             '2 gel manicures monthly',
             '1 luxury pedicure monthly',
@@ -396,12 +407,13 @@ export const memberships = [
     },
     {
         id: 'gold',
+        subscription: 'membership',
         name: 'Gold Membership',
         description: 'Ultimate luxury nail care experience',
-        monthlyPrice: 229,
+        price: 229,
         originalPrice: 320,
         savings: 91,
-        services: '4 services per month',
+        services: ['4 services per month'],
         features: [
             'Unlimited basic services',
             '2 premium treatments monthly',

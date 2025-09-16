@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/dynamicComponents/button";
 import { useData } from "@/helper/dataProvider";
 
-const DynamicButton = ({ data, hrefBase = "/pricing", label, icon: Icon }) => {
+const DynamicButton = ({ data, hrefBase = "/billing", label, icon: Icon }) => {
     const router = useRouter();
     const { setSharedData } = useData();
 
@@ -16,7 +16,7 @@ const DynamicButton = ({ data, hrefBase = "/pricing", label, icon: Icon }) => {
     return (
         <Button
             onClick={handleClick}
-            theme={`w-full py-3 bg-gradient-to-r ${data.color} text-white font-semibold rounded-full
+            theme={`w-full py-3 bg-gradient-to-r ${data.color ?? "from-pink-500 to-purple-600"} text-white font-semibold rounded-full
       hover:scale-105 transition-transform duration-300 flex items-center justify-center space-x-2`}
             label={
                 <span className="flex items-center gap-2">
