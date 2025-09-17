@@ -13,15 +13,13 @@ import {
     Heart,
     Sparkles,
     Award,
-    Calendar,
     User,
     Phone,
     Mail,
     CreditCard,
     Lock,
     CheckCircle,
-    Palette,
-    Gem
+
 } from "lucide-react";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
@@ -155,7 +153,7 @@ export default function PricingDetailsPage() {
                         </h1>
 
                         <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                            You're just one step away from your luxury nail experience
+                            You&#39;re just one step away from your luxury nail experience
                         </p>
                     </div>
 
@@ -202,7 +200,7 @@ export default function PricingDetailsPage() {
                                 <div className="p-8">
                                     <h4 className="text-white font-semibold mb-4 flex items-center">
                                         <CheckCircle className="w-5 h-5 text-green-400 mr-2"/>
-                                        What's Included
+                                        What&#39;s Included
                                     </h4>
                                     <div className="space-y-3 mb-6">
                                         {sharedData.features?.map((feature, idx) => (
@@ -341,7 +339,7 @@ export default function PricingDetailsPage() {
                                                 ))}
                                             </div>
 
-                                            <p className="text-white/80 text-sm mb-4 italic">"{testimonial.text}"</p>
+                                            <p className="text-white/80 text-sm mb-4 italic">&#34;{testimonial.text}&#34;</p>
 
                                             <div className="flex items-center space-x-3">
                                                 <div
