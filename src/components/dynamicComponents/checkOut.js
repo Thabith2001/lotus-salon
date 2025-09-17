@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import React, { useEffect, useState } from "react";
 import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -7,98 +8,73 @@ const CheckOut = ({ amount }) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const [errorMessages, setErrorMessages] = useState("");
-    const [success, setSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [clientSecret, setClientSecret] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         const fetchClientSecret = async () => {
             try {
                 const { data } = await axios.post("/api/create-payment-intent", { amount });
                 setClientSecret(data.clientSecret);
-            } catch (err) {
-                console.error("Error fetching clientSecret:", err);
-                setErrorMessages("Failed to initialize payment.");
+            } catch (error) {
+                setErrorMessage("Failed to initialize payment.");
             }
         };
-        fetchClientSecret();
+
+        if (amount > 0) fetchClientSecret();
     }, [amount]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!stripe || !elements || !clientSecret) return;
 
         setLoading(true);
-        setErrorMessages("");
+        setErrorMessage("");
 
-        const { error: submitError } = await elements.submit();
-        if (submitError) {
-            setErrorMessages(submitError.message);
-            setLoading(false);
-            return;
-        }
+        try {
+            // ✅ First, submit the PaymentElement
+            const { error: submitError } = await elements.submit();
+            if (submitError) {
+                setErrorMessage(submitError.message);
+                setLoading(false);
+                return;
+            }
 
-        const { error, paymentIntent } = await stripe.confirmPayment({
-            elements,
-            clientSecret,
-            confirmParams: {
-                return_url: `http://localhost:3000/payment-success?amount=${amount}`,
-            },
-            redirect: "if_required",
-        });
+            // ✅ Then confirm the payment
+            const { error, paymentIntent } = await stripe.confirmPayment({
+                elements,
+                clientSecret,
+                confirmParams: {
+                    return_url: `${window.location.origin}/payment-success`,
+                },
+                redirect: "if_required",
+            });
 
-        if (error) {
-            setErrorMessages(error.message);
-        } else if (paymentIntent && paymentIntent.status === "succeeded") {
-            setSuccess(true);
+            if (error) setErrorMessage(error.message);
+            else if (paymentIntent && paymentIntent.status === "succeeded") setSuccess(true);
+
+        } catch (err) {
+            setErrorMessage(err.message);
         }
 
         setLoading(false);
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="flex flex-col w-full h-full justify-center items-center p-4 "
-        >
-            {clientSecret && <PaymentElement className="w-full h-full" />}
+        <form onSubmit={handleSubmit} className="flex flex-col w-full p-4">
+            {clientSecret ? <PaymentElement className="mb-4" /> : <p>Loading payment...</p>}
 
-            {errorMessages && <p className="text-red-500 mt-2 p-2">{errorMessages}</p>}
-            {success && <p className="text-green-500 mt-2 p-2">Payment successful</p>}
+            {errorMessage && <p className="text-red-500 mb-2">{errorMessage}</p>}
+            {success && <p className="text-green-500 mb-2">Payment successful 🎉</p>}
 
             <button
+                type="submit"
                 disabled={!stripe || !clientSecret || loading}
-                className="flex items-center justify-center bg-black w-full font-bold text-xl  text-white px-8 py-3  rounded disabled:opacity-50"
+                className="bg-black text-white text-xl font-bold px-6 py-2 rounded disabled:opacity-50"
             >
-                {loading ? (
-                    <>
-                        <svg
-                            className="animate-spin h-5 w-5 mr-2 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                            ></circle>
-                            <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                            ></path>
-                        </svg>
-                        Processing...
-                    </>
-                ) : (
-                    `Pay $${amount}`
-                )}
+                {loading ? "Processing..." : `Pay $${amount}`}
             </button>
         </form>
     );

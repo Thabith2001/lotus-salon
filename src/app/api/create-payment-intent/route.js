@@ -1,21 +1,30 @@
+import Stripe from "stripe";
 
-import process from "process";
-const stripe_key = require('stripe')(process.env.STRIPE_SECRET_KEY);
+if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error("STRIPE_SECRET_KEY is not defined");
+}
 
-export async function POST(request) {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export async function POST(req) {
     try {
-        const {amount} = await request.json();
-        const paymentIntent = await stripe_key.paymentIntents.create({
-            amount: amount,
-            currency: 'usd',
-            automatic_payment_methods: {enabled: true},
+        const { amount } = await req.json();
+
+        if (!amount) {
+            return new Response(JSON.stringify({ error: "Amount is required" }), { status: 400 });
+        }
+
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount,
+            currency: "usd",
+            automatic_payment_methods: { enabled: true },
         });
-        return new Response(JSON.stringify({clientSecret: paymentIntent.client_secret}), {
+
+        return new Response(JSON.stringify({ clientSecret: paymentIntent.client_secret }), {
             status: 200,
         });
     } catch (error) {
-        return new Response(JSON.stringify({error: error.message}), {
-            status: 500,
-        });
+        console.error("Stripe error:", error);
+        return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }

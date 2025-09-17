@@ -11,8 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-    title: "Nail Salon",
-    description: "Luxury Nail Spa - Pamper Yourself with Elegance and Style",
+    title: "Lotus Salon",
+    description: "Luxury Nail Salon - Pamper Yourself with Elegance and Style",
     icons: {
         icon: "/images/lotus_logo.png",
     },

@@ -11,11 +11,11 @@ export const links = [
 
 import {
     Award,
-    BookOpen, Brush, Crown,
+    BookOpen, Brush, Clock, Crown,
     Facebook, Gift,
     Heart,
     Instagram, Mail, MapPin,
-    Palette, PhoneCall,
+    Palette, PhoneCall, Shield,
     Sparkles,
     TrendingUp,
     Twitter,
@@ -441,3 +441,24 @@ export  const getPopularityColor = (popularity) => {
     }
 };
 
+export const benefits = [
+    { icon: Shield, text: "100% Satisfaction Guarantee" },
+    { icon: Award, text: "Professional Certified Artists" },
+    { icon: Heart, text: "Premium Quality Products" },
+    { icon: Clock, text: "Flexible Scheduling" }
+];
+
+export const testimonials = [
+    {
+        name: "Sarah Johnson",
+        rating: 5,
+        text: "Absolutely amazing experience! The attention to detail is incredible.",
+        service: "Gel Manicure"
+    },
+    {
+        name: "Emma Davis",
+        rating: 5,
+        text: "Best nail salon in the city. Professional and luxurious.",
+        service: "Spa Package"
+    }
+];
