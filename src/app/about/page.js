@@ -16,6 +16,9 @@ const About = () => {
 
     useEffect(() => { animateCounters(); }, []);
 
+    useEffect(() => {
+        animateCounters();
+    }, [animateCounters]);
 
     useGsap({
         ref: containerRef,

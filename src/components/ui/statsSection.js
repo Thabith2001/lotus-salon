@@ -1,16 +1,19 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Users, Award, Star, Sparkles, ArrowRight} from "lucide-react";
 import Button from "@/components/dynamicComponents/button";
 
 const Stats = ({counters = {}, isVisible, setIsVisible}) => {
 
-
-    // Trigger visibility after mount
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 1000);
-        return () => clearTimeout(timer);
-    }, []);
+        const handleScroll = () => {
+            setIsVisible(window.scrollY > 100);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [setIsVisible]);
+
     return (
         <section
             id="stats-section"
